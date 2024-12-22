@@ -16,6 +16,7 @@
 
               ; Colorscheme
               :horanmustaplot/oxocarbon.nvim
+              :sainnhe/gruvbox-material
 
               {1 :nvim-lualine/lualine.nvim
                  :dependencies :nvim-tree/nvim-web-devicons
@@ -191,18 +192,18 @@
                         :hide_toolbar false
                         :html_output  :/tmp/markmap.html}}	
 
-              {1 :epwalsh/obsidian.nvim
-                 :dependencies [:nvim-lua/plenary.nvim]
-                 :ft :markdown
-                 :lazy true
-                 :opts {:workspaces [{:name :personal
-                                      :path "~/notes/personal"}
-                                     {:name :academic
-                                      :path "~/notes/academic"}
-                                     {:name :professional
-                                      :path "~/notes/work"}]
-                        :ui {:enable true}}
-                 :version "*"}
+              ; {1 :epwalsh/obsidian.nvim
+              ;    :dependencies [:nvim-lua/plenary.nvim]
+              ;    :ft :markdown
+              ;    :lazy true
+              ;    :opts {:workspaces [{:name :personal
+              ;                         :path "~/notes/personal"}
+              ;                        {:name :academic
+              ;                         :path "~/notes/academic"}
+              ;                        {:name :professional
+              ;                         :path "~/notes/work"}]
+              ;           :ui {:enable true}}
+              ;    :version "*"}
 
               {1 :OXY2DEV/markview.nvim
                  :dependencies [:nvim-treesitter/nvim-treesitter
@@ -305,16 +306,16 @@
                                                      to.hash))}
                     :symbols {:commit "*" :merge_commit :M}}}	
 
-             ;{1 :SuperBo/fugit2.nvim
-             ;      :cmd [:Fugit2 :Fugit2Diff :Fugit2Graph]
-             ;      :dependencies [:MunifTanjim/nui.nvim
-             ;                      :nvim-tree/nvim-web-devicons
-             ;                      :nvim-lua/plenary.nvim
-             ;                      {1 :chrisgrieser/nvim-tinygit
-             ;                      :dependencies [:stevearc/dressing.nvim]}]
-             ;      :keys [{1 :<leader>f 2 :<cmd>Fugit2<cr> :mode :n :desc "Fugit"}] ;NOTE: add A better dsc
-             ;      :opts {:width 150
-             ;             :height 30}}	
+             {1 :SuperBo/fugit2.nvim
+                  :cmd [:Fugit2 :Fugit2Diff :Fugit2Graph]
+                  :dependencies [:MunifTanjim/nui.nvim
+                                  :nvim-tree/nvim-web-devicons
+                                  :nvim-lua/plenary.nvim
+                                  {1 :chrisgrieser/nvim-tinygit
+                                  :dependencies [:stevearc/dressing.nvim]}]
+                  :keys [{1 :<leader>f 2 :<cmd>Fugit2<cr> :mode :n :desc "Open Fugit2 GUI"}] ;TODO: add A better dsc
+                  :opts {:width 150
+                         :height 30}}	
 
               {1 :kevinhwang91/nvim-ufo
                  :dependencies :kevinhwang91/promise-async
@@ -356,15 +357,19 @@
 
              :Civitasv/cmake-tools.nvim
              :Shatur/neovim-cmake
-             ; :karb94/neoscroll.nvim
-             ; {1 :declancm/cinnamon.nvim
-             ;    :config true}
              :wakatime/vim-wakatime
+             {1 :karb94/neoscroll.nvim
+                :config (fn []
+                          ((. (require :neoscroll) :setup) {}))}
              {1 :ray-x/web-tools.nvim
-                :Lazy :VeryLazy
+                :Lazy   :VeryLazy
                 :config true}
              {1 :windwp/nvim-ts-autotag
-                :config true
+                :config (fn []
+                          ((. (require :nvim-ts-autotag) :setup) {:opts {:enable_close true
+                                                                         :enable_close_on_slash false
+                                                                         :enable_rename true}
+                                                                  :per_filetype {:html {:enable_close false}}}))
                 :lazy :VeryLazy}
 
              {1 :folke/zen-mode.nvim
@@ -441,12 +446,19 @@
                                   :type :image}}
                 :version "*"}	
 
+             ; {1 :lukas-reineke/indent-blankline.nvim
+             ;    :dependencies [:TheGLander/indent-rainbowline.nvim]
+             ;    :main :ibl
+             ;    :opts (fn [_ opts]
+             ;            ((. (require :indent-rainbowline) :make_opts) opts))}
+
              ;; Debugging
              :mfussenegger/nvim-dap
              :rcarriga/nvim-dap-ui
              :jay-babu/mason-nvim-dap.nvim
              :Weissle/persistent-breakpoints.nvim
 
+             {1 :fedepujol/move.nvim :opts {}}
              ] ;; End of plugins.
 
 

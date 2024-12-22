@@ -20,7 +20,7 @@
                                                          (when (> foldlevel foldlevel-after) (lua "return \"╰\""))
                                                          "│"))	] ; │╎
                                                 :colwidth 2
-                                                :maxwidth 1}
+                                                :maxwidth 2}
 
                                               {:click "v:lua.ScSa"
                                                 :sign {:auto true

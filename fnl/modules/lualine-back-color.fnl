@@ -54,8 +54,8 @@
 
        :options {:component_separators ""
                  :section_separators   ""
-                 ; :theme {:inactive {:c {:bg colors.bg :fg colors.fg}}
-                 ;         :normal   {:c {:bg colors.bg :fg colors.fg}}}
+                 :theme {:inactive {:c {:bg colors.bg :fg colors.fg}}
+                         :normal   {:c {:bg colors.bg :fg colors.fg}}}
                  :disabled_filetypes {:statusline [ "dashboard"
                                                     "alpha"
                                                     "oil"
@@ -70,35 +70,35 @@
 ;           :padding {:left 0 :right 1}})
 
 (ins-left {1 (fn [] "")
-          ; :color (fn []
-          ;          (local mode-color
-          ;                 {"\019" colors.orange
-          ;                 "\022"  colors.blue
-          ;                 :!      colors.fg2
-          ;                 :R      colors.violet
-          ;                 :Rv     colors.violet
-          ;                 :S      colors.orange
-          ;                 :V      colors.blue
-          ;                 :c      colors.magenta
-          ;                 :ce     colors.fg2
-          ;                 :cv     colors.fg2
-          ;                 :i      colors.green
-          ;                 :ic     colors.yellow
-          ;                 :n      colors.fg2
-          ;                 :no     colors.fg2
-          ;                 :r      colors.cyan
-          ;                 :r?     colors.cyan
-          ;                 :rm     colors.cyan
-          ;                 :s      colors.orange
-          ;                 :t      colors.fg2
-          ;                 :v      colors.blue})
-          ;          {:fg (. mode-color (vim.fn.mode))})
+          :color (fn []
+                   (local mode-color
+                          {"\019" colors.orange
+                          "\022"  colors.blue
+                          :!      colors.fg2
+                          :R      colors.violet
+                          :Rv     colors.violet
+                          :S      colors.orange
+                          :V      colors.blue
+                          :c      colors.magenta
+                          :ce     colors.fg2
+                          :cv     colors.fg2
+                          :i      colors.green
+                          :ic     colors.yellow
+                          :n      colors.fg2
+                          :no     colors.fg2
+                          :r      colors.cyan
+                          :r?     colors.cyan
+                          :rm     colors.cyan
+                          :s      colors.orange
+                          :t      colors.fg2
+                          :v      colors.blue})
+                   {:fg (. mode-color (vim.fn.mode))})
           :padding {:right 1}})
 
 ; (ins-left {1 :filesize :cond conditions.buffer_not_empty})
 
 (ins-left {1 :filename
-          ; :color {:fg colors.magenta :gui :bold}
+          :color {:fg colors.magenta :gui :bold}
           :symbols {
                 :modified ""; 
                 :readonly ""; 
@@ -111,10 +111,10 @@
 ; (ins-left {1 :progress :color {:fg colors.fg :gui :bold}})
 
 (ins-left {1 :diagnostics
-          ; :diagnostics_color {:error {:fg colors.red}
-          ;                     :hint  {:fg colors.blue}
-          ;                     :info  {:fg colors.cyan}
-          ;                     :warn  {:fg colors.yellow}}
+          :diagnostics_color {:error {:fg colors.red}
+                              :hint  {:fg colors.blue}
+                              :info  {:fg colors.cyan}
+                              :warn  {:fg colors.yellow}}
           :sources [:nvim_diagnostic]
           :symbols {:error " " :hint " " :info " " :warn " "}})
 
@@ -132,7 +132,7 @@
                      (let [___antifnl_rtn_1___ client.name]
                        (lua "return ___antifnl_rtn_1___"))))
                  msg))
-          ; :color {:fg colors.color4 :gui :bold}
+          :color {:fg colors.color4 :gui :bold}
           :icon " :"})
 
 ; 
@@ -143,7 +143,7 @@
 ;  :fmt string.upper}
 ;
 (ins-right {1 (fn [] (.. " " (vim.fn.line "$"))) 
-              ; :color {:fg colors.blue}
+              :color {:fg colors.blue}
               :cond  conditions.buffer_not_empty})
 
 ; (ins-right {1 "o:encoding"
@@ -160,9 +160,9 @@
 
 (ins-right {1 :diff
               :cond conditions.hide_in_width
-              ; :diff_color {:added    {:fg colors.green}
-              ;              :modified {:fg colors.orange}
-              ;              :removed  {:fg colors.red}}
+              :diff_color {:added    {:fg colors.green}
+                           :modified {:fg colors.orange}
+                           :removed  {:fg colors.red}}
               :symbols {:added " " :modified "󰝤 " :removed " "}})
 
 ; (ins-right {1 (fn [] "▊") :color {:fg colors.fg2} :padding {:left 1}})

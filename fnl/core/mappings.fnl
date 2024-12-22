@@ -2,6 +2,7 @@
 
 ;; Open oil
 (map! [:n] "-" (. (require :oil) :open) "Open parent directory")
+(map! [:n] "<space>-" (. (require :oil) :toggle_float) "Open parent directory")
 
 ;; Splits mapping.
 (map! [:n] "<Leader>w" ":w<CR>" "Save file")
@@ -12,10 +13,6 @@
 
 (map! [:n] "<localleader>s" ":sp<CR>" "Open horizontal split")
 (map! [:n] "<localleader>w" ":vs<CR>" "Open vertical split")
-
-;; Others
-; (map! [:n] "<C-u>"   ":<C-u>zz<CR>"      "Scroll up and center") ;; FIX: some issue here.
-; (map! [:n] "<C-d>"   ":<C-d>zz<CR>"      "Scroll down and center")
 
 (map! [:n] "s" ":HopWord<CR>"  "Jump to a word with Hop")
 (map! [:n] "<leader>tl" ":lua require(\"lsp_lines\").toggle()<CR>"  "Toggle lsp_lines")
@@ -39,10 +36,10 @@
 (map! [:n] "<C-l>" ":wincmd l<CR>" "Move to the split on the right")
 
 ; Scaling splits
-(map! [:n] "<C-S-H>" ":resize +1<CR>" "Increase window height")
+(map! [:n] "<C-S-K>" ":resize +1<CR>" "Increase window height")
 (map! [:n] "<C-S-J>" ":resize -1<CR>" "Decrease window height")
-(map! [:n] "<C-S-K>" ":vertical resize +1<CR>" "Increase window width")
-(map! [:n] "<C-S-L>" ":vertical resize -1<CR>" "Decrease window width")
+(map! [:n] "<C-S-L>" ":vertical resize +1<CR>" "Increase window width")
+(map! [:n] "<C-S-H>" ":vertical resize -1<CR>" "Decrease window width")
 
 ; Moving splits
 (map! [:n] "<A-d>" "<Cmd>WinShift left<CR>"  "Move current split to the left")
@@ -62,7 +59,31 @@
 
 (map! [:n] "<leader>a" ":EasyColor<CR>" "Color Picker")
 
-(map! [:n] "<CTRL><CR>" ":EasyColor<CR>" "Color Picker")
+(map! [:n] "<A-k>" ":MoveLine -1<CR>" "Move line Up")
+(map! [:n] "<A-j>" ":MoveLine 1<CR>"  "Move line Down")
+
+(map! [:v] "<A-k>" ":MoveBlock -1<CR>" "Move block Up")
+(map! [:v] "<A-j>" ":MoveBlock 1<CR>"  "Move block Down")
+
+; vim.keymap.set('v', '<A-j>', ':<CR>', opts)
+; vim.keymap.set('v', '<A-k>', '', opts)
+
+; local opts = { noremap = true, silent = true }
+; -- Normal-mode commands
+; vim.keymap.set('n', '<A-j>', ':MoveLine(1)<CR>', opts)
+; vim.keymap.set('n', '<A-k>', ':MoveLine(-1)<CR>', opts)
+; vim.keymap.set('n', '<A-h>', ':MoveHChar(-1)<CR>', opts)
+; vim.keymap.set('n', '<A-l>', ':MoveHChar(1)<CR>', opts)
+; vim.keymap.set('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
+; vim.keymap.set('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
+;
+; -- Visual-mode commands
+; vim.keymap.set('v', '<A-j>', ':MoveBlock(1)<CR>', opts)
+; vim.keymap.set('v', '<A-k>', ':MoveBlock(-1)<CR>', opts)
+; vim.keymap.set('v', '<A-h>', ':MoveHBlock(-1)<CR>', opts)
+; vim.keymap.set('v', '<A-l>', ':MoveHBlock(1)<CR>', opts)
+
+; (map! [:n] "<CTRL><CR>" ":EasyColor<CR>" "Color Picker")
 
 ; Some keybindings for normal mode.
 ; (vim.api.nvim_set_keymap :i :<C-l> :<Right> {:noremap true :silent true})

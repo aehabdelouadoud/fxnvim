@@ -22,8 +22,9 @@
                                           "java $fileNameWithoutExt"]
                                    :python "python3 -u"
                                    :fennel "fennel *.fnl"
-                                   :rust ["cd $dir &&"
-                                          "rustc $fileName &&"
-                                          :$dir/$fileNameWithoutExt]
+                                   ; :rust ["cd $dir &&"
+                                   ;        "rustc $fileName &&"
+                                   ;        :$dir/$fileNameWithoutExt]
+                                   :rust "cargo run"
                                    :typescript "deno run"}})	
 
