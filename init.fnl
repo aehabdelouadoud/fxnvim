@@ -17,6 +17,9 @@
               ; Colorscheme
               :horanmustaplot/oxocarbon.nvim
               :sainnhe/gruvbox-material
+              :folke/tokyonight.nvim
+              :akinsho/horizon.nvim
+              :olimorris/onedarkpro.nvim
 
               {1 :nvim-lualine/lualine.nvim
                  :dependencies :nvim-tree/nvim-web-devicons
@@ -108,7 +111,9 @@
               {1 :folke/todo-comments.nvim
                  :event        :BufReadPost
                  :config true
-                 :dependencies :nvim-lua/plenary.nvim}
+                 :dependencies [:nvim-lua/plenary.nvim
+                                {1 :folke/trouble.nvim
+                                   :config true}]}
 
               {1 :echasnovski/mini.align
                  :event :VeryLazy}
@@ -470,3 +475,4 @@
 (require :core.mappings)
 (require :core.autocommands)
 
+(vim.cmd "colorscheme oxocarbon")

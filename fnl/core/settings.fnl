@@ -5,14 +5,14 @@
 (set! spelllang [:en_us])	
 
 ;; Define a list of fonts
-(local fonts ["0xProto Nerd Font:h9.5"
+(local fonts ["0xProto Nerd Font:h9"
               "Liga SFMono Nerd Font:h9.5"
               "Terminess Nerd Font:h9.5"
               "JetBrainsMono Nerd Font:h9"
               "FiraCode Nerd Font:h9"])
 
 ;; Set the guifont option to the second font in the list
-(set! guifont (. fonts 5))
+(set! guifont (. fonts 1))
 
 ;; Enable true color support
 (set! termguicolors)
@@ -84,6 +84,7 @@
 
 
 (vim.cmd "colorscheme oxocarbon")
+; (vim.cmd "colorscheme gruvbox-material")
 
 ;; gives a global statusline instead of one for every split, and there is always a separator between splits
 (set! laststatus 3)
@@ -92,3 +93,8 @@
 
 (set! guicursor "n-v-c-sm-i-ci-ve:block,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor")
 
+; Tab
+(set! tabstop 2)
+(set! shiftwidth 2)
+(set! softtabstop 2)
+(set! expandtab true)
