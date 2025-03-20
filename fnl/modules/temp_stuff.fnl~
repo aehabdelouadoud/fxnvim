@@ -1,0 +1,20 @@
+
+                :opts {
+                  :on_close (fn []
+                              ; (vim.cmd "Lspsaga winbar_toggle")
+                              ((. (require :lualine) :hide) {:unhide true})
+                              ; ((. (require :incline) :enable) {})
+                              (set vim.wo.number true)
+                              (set vim.opt.laststatus 0)
+                              (set vim.wo.relativenumber true)
+                              (set vim.opt.laststatus 3)
+                              (set vim.wo.foldenable true))
+
+                  :on_open  (fn [] 
+                              ; (vim.cmd "Lspsaga winbar_toggle")
+                              (. (require :lualine) :hide)
+                              ; ((. (require :incline) :disable) {})
+                              (set vim.wo.number false)
+                              (set vim.opt.laststatus 3)
+                              (set vim.wo.relativenumber false)
+                              (set vim.wo.foldenable false))}}

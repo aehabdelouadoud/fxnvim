@@ -1,0 +1,68 @@
+; Ensure the macro is defined
+; (macro install [plugin]
+;   `(table.insert plugins ,plugin))
+
+(macro install [plugin]
+  `(table.insert plugins 
+     ~ (walk/postwalk
+        (fn [x]
+          (cond
+            (map? x) (into {} (map (fn [[k v]]
+                                     [(if (keyword? k) (name k) k) v]) x))
+            (keyword? x) (name x)
+            :else x))
+        plugin)))
+
+(local plugins [])
+
+
+(install {:name "udayvir-singh/tangerine.nvim"
+         :lazy false 
+         :priority 1000
+         :desc "Tangerine provides a painless way to add fennel to your config - https://github.com/udayvir-singh/tangerine.nvim"})
+
+(install {:name "udayvir-singh/hibiscus.nvim"
+         :desc "Highly opinionated macros to elegantly write your neovim config - https://github.com/udayvir-singh/hibiscus.nvim"
+         :event "VeryLazy"})
+
+; -- Colors schemes
+
+(install {:name "sainnhe/gruvbox-material"
+         :desc "The enhanced version of Gruvbox the awesome colorscheme"})
+(install {:name "horanmustaplot/oxocarbon.nvim"
+         :desc "IBM inspired colorscheme"})
+(install {:name "folke/tokyonight.nvim"})
+(install {:name "akinsho/horizon.nvim"})
+(install {:name "olimorris/onedarkpro.nvim"})
+
+
+(install {:name "nvim-lualine/lualine.nvim"
+         :dependencies ["nvim-tree/nvim-web-devicons"]
+         :desc "A blazing fast and easy to configure Neovim statusline written in Lua."
+         :event "VeryLazy"
+         :init         (fn [] (require :modules.lualine))})
+
+(install {:name "folke/noice.nvim"
+         :dependencies [{:name "MunifTanjim/nui.nvim"
+                         :event "VeryLazy"}]
+         :config       (fn [] (require :modules.noice))
+         :event        "VeryLazy"})
+
+              {1 :nvimdev/dashboard-nvim
+                 :dependencies  [:nvim-tree/nvim-web-devicons
+                                 {1 :folke/persistence.nvim ;; Not a dependency for the plugin itself but used for it.
+                                    :event :VeryLazy
+                                    :config true}]
+                 :event :VimEnter
+                 :config (fn []
+                           (require :modules.dashboard))}
+
+              {1 :stevearc/oil.nvim
+                 :dependencies [{1 :echasnovski/mini.icons :opts {}}]
+                 :config       (fn []
+                                 (require :modules.oil))
+                 :cmd          :Oil}
+
+; Return the plugins table
+plugins
+
